@@ -9,10 +9,9 @@ from typing import Dict, Optional
 
 # IPA sources with their URLs
 IPA_SOURCES = {
-    "Ksign": "https://github.com/Nyasami/Ksign/releases/latest/download/Ksign.ipa",
-    "Feather": "https://github.com/claration/Feather/releases/latest/download/Feather.ipa",
-    "ESign": "https://github.com/Neoncat-OG/TrollStore-IPAs/releases/download/ESign/ESign-5.0.2.ipa",
-    "Scarlet": "https://github.com/NovaDev404/apps/raw/refs/heads/main/ScarletAlpha.ipa",
+    "NexStore": "https://github.com/NovaDev404/NexStore/releases/latest/download/NexStore.ipa",
+    "CocoSign": "https://api.cococloud-signing.vip/v1/app-version/16/download",
+    "FlareStore": "https://github.com/NovaDev404/apps/raw/refs/heads/main/FlareStore-iOS-v1.2.0.ipa",
 }
 
 # State file to track downloaded IPAs
