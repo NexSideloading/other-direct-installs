@@ -1,4 +1,4 @@
-# Sideloading Direct Installs
+# Branded Sideloading Direct Installs
 https://install.sideloading.net
 
 ## Apps
