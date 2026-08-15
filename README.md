@@ -2,7 +2,6 @@
 https://install.sideloading.net
 
 ## Apps
-- Ksign
-- Feather
-- ESign
-- Scarlet
+- NexStore
+- CocoSign
+- FlareStore
