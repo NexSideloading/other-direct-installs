@@ -1,7 +1,7 @@
-# Branded Sideloading Direct Installs
+# Sideloading Direct Installs
 https://install.sideloading.net
 
 ## Apps
 - NexStore
-- CocoSign
-- FlareStore
+- SideInstaller
+- iRAM+
