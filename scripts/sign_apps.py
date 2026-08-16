@@ -208,7 +208,7 @@ def sign_ipa(ipa_path: Path, cert_files: Dict, output_path: Path, zsign_path: Pa
                 "-x", str(metadata_dir),
                 str(ipa_path)
             ]
-            
+            print(cmd)
             result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
             
             if result.returncode != 0:
