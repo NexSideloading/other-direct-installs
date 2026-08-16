@@ -9,9 +9,9 @@ from typing import Dict, Optional
 
 # IPA sources with their URLs
 IPA_SOURCES = {
-    "NexStore": "https://github.com/NovaDev404/NexStore/releases/latest/download/NexStore.ipa",
-    "CocoSign": "https://api.cococloud-signing.vip/v1/app-version/16/download",
-    "FlareStore": "https://github.com/NovaDev404/apps/raw/refs/heads/main/FlareStore-iOS-v1.2.0.ipa",
+    "NexStore": "https://github.com/NexSideloading/NexStore/releases/latest/download/NexStore.ipa",
+    "SideInstaller": "https://github.com/FrizzleM/SideInstaller/releases/latest/download/SideInstaller.ipa",
+    "iRAM+": "https://github.com/NovaDev404/iRAM-Plus/releases/latest/download/iRAM-Plus.ipa",
 }
 
 # State file to track downloaded IPAs
