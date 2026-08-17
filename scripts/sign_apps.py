@@ -44,12 +44,46 @@ def save_state(state: Dict):
         json.dump(state, f, indent=2)
 
 def load_cert_state() -> Dict:
-    """Load the certificate state."""
+    """Load the certificate state and supplement with local certificates."""
     cert_state_file = REPO_ROOT / "certificates_state.json"
+    cert_state = {}
+    
+    # Load existing state from file
     if cert_state_file.exists():
         with open(cert_state_file, 'r') as f:
-            return json.load(f)
-    return {}
+            cert_state = json.load(f)
+    
+    # Scan local certificates directory for additional certificates not in state
+    if CERT_DIR.exists():
+        local_cert_folders = {f.name for f in CERT_DIR.iterdir() if f.is_dir()}
+        state_folder_names = {info.get('folder_name', '') for info in cert_state.values()}
+        
+        # Find certificates that exist on disk but not in state
+        additional_folders = local_cert_folders - state_folder_names
+        
+        if additional_folders:
+            print(f"Found {len(additional_folders)} additional certificate folders on disk")
+            for folder_name in additional_folders:
+                # Generate a temporary ID for local certificates (negative numbers to avoid conflict)
+                temp_id = f"local_{hash(folder_name) % 10000}"
+                
+                # Try to extract certificate info from folder contents
+                cert_dir = CERT_DIR / folder_name
+                cert_files = get_certificate_files(cert_dir)
+                
+                # Add to state with minimal info
+                cert_state[temp_id] = {
+                    'name': folder_name,
+                    'status': 'Local',
+                    'folder_name': folder_name,
+                    'is_missing_p12': not cert_files['p12'],
+                    'valid_from': '',
+                    'valid_to': '',
+                    'is_local': True  # Flag to identify local certificates
+                }
+                print(f"  Added local certificate: {folder_name}")
+    
+    return cert_state
 
 def get_certificate_files(cert_dir: Path) -> Dict[str, Optional[Path]]:
     """Get paths to certificate files."""
@@ -470,7 +504,12 @@ def main(force_apps=None, force_certs=None, force_all=False):
         
         # Process each certificate
         for cert_id_str, cert_info in cert_state.items():
-            cert_id = int(cert_id_str)
+            # Handle both numeric and string certificate IDs
+            try:
+                cert_id = int(cert_id_str)
+            except ValueError:
+                cert_id = cert_id_str  # Keep as string for local certificates
+            
             cert_name = cert_info['name']
             folder_name = cert_info['folder_name']
             is_missing_p12 = cert_info.get('is_missing_p12', False)
@@ -487,8 +526,8 @@ def main(force_apps=None, force_certs=None, force_all=False):
                 print(f"  Skipping {cert_name} (missing P12 file, cannot sign)")
                 continue
             
-            # Apply certificate filters for revoked certs
-            if is_revoked and not include_revoked:
+            # Apply certificate filters for revoked certs (skip for local certificates)
+            if is_revoked and not include_revoked and not cert_info.get('is_local', False):
                 print(f"  Skipping {cert_name} (revoked certificate)")
                 continue
             
@@ -500,13 +539,14 @@ def main(force_apps=None, force_certs=None, force_all=False):
                 continue
             
             # Create output directory for this app/cert combination
-            output_subdir = OUTPUT_DIR / app_name / cert_name
+            # Use folder_name for the directory to ensure consistency
+            output_subdir = OUTPUT_DIR / app_name / folder_name
             
             signed_ipa_path = output_subdir / "signed.ipa"
             manifest_path = output_subdir / "manifest.plist"
             
             # Check if already signed with current IPA version
-            state_key = f"{cert_id}"
+            state_key = str(cert_id)
             current_state = signing_state[app_name].get(state_key, {})
             
             # Determine if we need to re-sign
@@ -523,9 +563,9 @@ def main(force_apps=None, force_certs=None, force_all=False):
                 needs_signing = True
                 reason = "force certificate"
             elif not output_subdir.exists():
-                # Certificate folder doesn't exist, need to sign
+                # Output folder doesn't exist, need to sign
                 needs_signing = True
-                reason = "certificate folder missing"
+                reason = "output folder missing"
             elif not (current_state.get('ipa_hash') == ipa_version and current_state.get('cert_version') == cert_info.get('valid_to')):
                 needs_signing = True
                 reason = "version mismatch"
@@ -572,7 +612,7 @@ def main(force_apps=None, force_certs=None, force_all=False):
                 github_repo=github_repo,
                 github_ref=github_ref,
                 app_name=quote(app_name),
-                cert_name=quote(cert_name)
+                cert_name=quote(folder_name)
             )
             
             if not generate_manifest(ipa_url, app_name, version, bundle_id, title, manifest_path, icon_path):
@@ -583,7 +623,7 @@ def main(force_apps=None, force_certs=None, force_all=False):
             signing_state[app_name][state_key] = {
                 'ipa_hash': ipa_version,
                 'cert_version': cert_info.get('valid_to'),
-                'cert_name': cert_name,
+                'cert_name': folder_name,
                 'timestamp': str(Path(signed_ipa_path).stat().st_mtime)
             }
             
@@ -593,10 +633,14 @@ def main(force_apps=None, force_certs=None, force_all=False):
     print("\nCleaning up obsolete signed apps...")
     for app_name in list(signing_state.keys()):
         for cert_id_str in list(signing_state[app_name].keys()):
+            # Skip cleanup for local certificates (they may not be in API state)
+            if cert_id_str.startswith('local_'):
+                continue
+                
             if cert_id_str not in cert_state:
                 # Certificate no longer exists, remove signed files
-                cert_name = signing_state[app_name][cert_id_str].get('cert_name', f"cert_{cert_id_str}")
-                output_subdir = OUTPUT_DIR / app_name / cert_name
+                folder_name = signing_state[app_name][cert_id_str].get('cert_name', f"cert_{cert_id_str}")
+                output_subdir = OUTPUT_DIR / app_name / folder_name
                 
                 shutil.rmtree(output_subdir, ignore_errors=True)
                 print(f"  🗑️ Removed {app_name}/{cert_name}")
