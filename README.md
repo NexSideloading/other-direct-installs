@@ -1,5 +1,5 @@
 # Other Direct Installs
-https://install.sideloading.net
+https://install.sideloading.net/#apps
 
 ## Apps
 - NexStore
