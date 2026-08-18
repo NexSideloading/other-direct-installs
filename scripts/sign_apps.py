@@ -268,7 +268,6 @@ def prepare_and_sign_ipa(ipa_path: Path, cert_files: Dict, output_path: Path, zs
                         zip_ref.write(file_path, arcname)
             
             # Sign the modified IPA
-            print(f"  Signing IPA with zsign...")
             cmd = [
                 str(zsign_path),
                 "-k", str(cert_files['p12']),
