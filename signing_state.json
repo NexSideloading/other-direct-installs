@@ -191,6 +191,12 @@
       "cert_version": "Jun 13 11:25:07 2027 GMT",
       "cert_name": "Moving Increasingly Interconnected Technology Co., Ltd (com.oa11)",
       "timestamp": "1792167900.1215174"
+    },
+    "33": {
+      "ipa_hash": "1.1.1",
+      "cert_version": "Nov 5 05:04:09 2026 GMT",
+      "cert_name": "RAKUTEN SECURITIES,INC",
+      "timestamp": "1792442604.8997176"
     }
   },
   "iRAM+": {
@@ -385,6 +391,12 @@
       "cert_version": "Jun 13 11:25:07 2027 GMT",
       "cert_name": "Moving Increasingly Interconnected Technology Co., Ltd (com.oa11)",
       "timestamp": "1792167832.9494588"
+    },
+    "33": {
+      "ipa_hash": "1.2.0",
+      "cert_version": "Nov 5 05:04:09 2026 GMT",
+      "cert_name": "RAKUTEN SECURITIES,INC",
+      "timestamp": "1792442602.3407054"
     }
   },
   "SideInstaller": {
@@ -579,6 +591,12 @@
       "cert_version": "Jun 13 11:25:07 2027 GMT",
       "cert_name": "Moving Increasingly Interconnected Technology Co., Ltd (com.oa11)",
       "timestamp": "1792167856.8188396"
+    },
+    "33": {
+      "ipa_hash": "0.9.0",
+      "cert_version": "Nov 5 05:04:09 2026 GMT",
+      "cert_name": "RAKUTEN SECURITIES,INC",
+      "timestamp": "1792442603.29071"
     }
   }
 }
