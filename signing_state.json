@@ -195,8 +195,14 @@
     "33": {
       "ipa_hash": "1.1.1",
       "cert_version": "Nov 5 05:04:09 2026 GMT",
-      "cert_name": "RAKUTEN SECURITIES,INC",
-      "timestamp": "1792442604.8997176"
+      "cert_name": "RAKUTEN SECURITIES,INC. (iSpeed WidgetApp Dev)",
+      "timestamp": "1792479096.313917"
+    },
+    "34": {
+      "ipa_hash": "1.1.1",
+      "cert_version": "Feb 9 01:15:30 2027 GMT",
+      "cert_name": "RAKUTEN SECURITIES,INC. (shisankeisei Pushnotification)",
+      "timestamp": "1792479097.79786"
     }
   },
   "iRAM+": {
@@ -395,8 +401,14 @@
     "33": {
       "ipa_hash": "1.2.0",
       "cert_version": "Nov 5 05:04:09 2026 GMT",
-      "cert_name": "RAKUTEN SECURITIES,INC",
-      "timestamp": "1792442602.3407054"
+      "cert_name": "RAKUTEN SECURITIES,INC. (iSpeed WidgetApp Dev)",
+      "timestamp": "1792479092.9190416"
+    },
+    "34": {
+      "ipa_hash": "1.2.0",
+      "cert_version": "Feb 9 01:15:30 2027 GMT",
+      "cert_name": "RAKUTEN SECURITIES,INC. (shisankeisei Pushnotification)",
+      "timestamp": "1792479093.1030347"
     }
   },
   "SideInstaller": {
@@ -595,8 +607,14 @@
     "33": {
       "ipa_hash": "0.9.0",
       "cert_version": "Nov 5 05:04:09 2026 GMT",
-      "cert_name": "RAKUTEN SECURITIES,INC",
-      "timestamp": "1792442603.29071"
+      "cert_name": "RAKUTEN SECURITIES,INC. (iSpeed WidgetApp Dev)",
+      "timestamp": "1792479093.971003"
+    },
+    "34": {
+      "ipa_hash": "0.9.0",
+      "cert_version": "Feb 9 01:15:30 2027 GMT",
+      "cert_name": "RAKUTEN SECURITIES,INC. (shisankeisei Pushnotification)",
+      "timestamp": "1792479094.8279715"
     }
   }
 }
