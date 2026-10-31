@@ -1,14 +1,23 @@
 {
   "NexStore": {
-    "hash": "a781343f08101703b381108167314a002fa0f5e446091035f8d13c589b8ae6c4",
-    "last_updated": "1787035848.6812022"
+    "hash": "b10fed290028330118c086d47c6b04db76684e6e298153a86d5c39ec9f749570",
+    "last_updated": "1793416860.0328739",
+    "etag": "\"0x8DF36FAC9A24FE1\"",
+    "last_modified": "Sat, 31 Oct 2026 02:58:06 GMT",
+    "content_length": "14975240"
   },
   "SideInstaller": {
-    "hash": "73dd6b9027cbe850f1556ec87bd12a1c36bce9b020c79bdaa7f7b2e5153a4613",
-    "last_updated": "1787035849.356202"
+    "hash": "1d76e3f67732dee4dbf18a5de8af99ce02a6f81fbd51538711a9526d45f47da9",
+    "last_updated": "1793416860.665871",
+    "etag": "\"0x8DF3596D6F605C5\"",
+    "last_modified": "Thu, 29 Oct 2026 08:30:07 GMT",
+    "content_length": "10307778"
   },
   "iRAM+": {
-    "hash": "5108c7ac7b0c0636e90c2c8766849ac820996a781adab3a2b3fa51fea80ee76e",
-    "last_updated": "1787035850.0782018"
+    "hash": "db09912d80437f977af16e618f0a4fed768d14c790da19e4099e2c344ea46ca2",
+    "last_updated": "1793416861.518867",
+    "etag": "\"0x8DF3186D95FB828\"",
+    "last_modified": "Sat, 24 Oct 2026 04:25:35 GMT",
+    "content_length": "4562979"
   }
 }

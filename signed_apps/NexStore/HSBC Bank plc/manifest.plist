@@ -29,9 +29,9 @@
             <key>metadata</key>
             <dict>
                 <key>bundle-identifier</key>
-                <string>com.novadev.nexstore</string>
+                <string>nexsideloading.nexstore</string>
                 <key>bundle-version</key>
-                <string>1.1.1</string>
+                <string>1.2.0</string>
                 <key>kind</key>
                 <string>software</string>
                 <key>title</key>
