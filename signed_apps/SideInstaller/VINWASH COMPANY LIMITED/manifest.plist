@@ -31,7 +31,7 @@
                 <key>bundle-identifier</key>
                 <string>com.frizzlem.sideinstaller</string>
                 <key>bundle-version</key>
-                <string>1.6.4</string>
+                <string>1.6.5</string>
                 <key>kind</key>
                 <string>software</string>
                 <key>title</key>
